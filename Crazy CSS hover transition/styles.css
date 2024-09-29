@@ -1,0 +1,78 @@
+body {
+    background-color: #413b3b; 
+    margin: 0; 
+    padding: 0; 
+}
+
+main {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    padding: 20px;
+}
+
+.list {
+    display: flex;
+    flex-direction: row; /* added this line */
+    flex-wrap: nowrap;
+    gap: 5px;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    padding: 10px;
+}
+
+.List:first-child {
+    padding-left: 0; /* remove padding from the first item */
+}
+
+.List:last-child {
+    padding-right: 0; /* remove padding from the last item */
+}
+
+.list .item{
+    flex: 1; /* make items equal width */
+    transition: .5s;
+    filter: brightness(0);
+}
+
+.list .item img {
+    object-fit: contain; 
+    width: 100%; 
+    height: 200px; 
+}
+
+.list .item:hover{
+    filter: brightness(1);
+    transform: translateZ(200px);
+}
+
+.list .item:hover ~ *{
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(40deg);
+}
+
+.list .item:hover ~ * ~ *{
+    filter: brightness(0.4);
+    transform: translateZ(70px) rotateY(28deg);
+}
+
+.list .item:hover ~ * ~ * ~ *{
+    filter: brightness(0.2);
+    transform: translateZ(30px) rotateY(10deg);
+}
+
+.list .item:has(~ :hover){
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(-40deg);
+}
+
+.list .item:has(~ *:hover){
+    filter: brightness(0.4);
+    transform: translateZ(70px) rotateY(-28deg);
+}
+
+.list .item:has(~ * ~ *:hover){
+    filter: brightness(0.2);
+    transform: translateZ(30px) rotateY(-10deg);
+}
